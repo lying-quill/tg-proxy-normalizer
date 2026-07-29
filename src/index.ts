@@ -44,6 +44,8 @@ export default {
 			const text = message?.text;
 			const entities = message?.entities;
 
+			console.debug("message=", message, entities);
+
 			if (message && text && entities) {
 				const fixedLinks: string[] = [];
 
@@ -59,6 +61,8 @@ export default {
 				}
 
 				if (fixedLinks.length) {
+					console.debug("sendMessage", fixedLinks);
+
 					// wait for this api call to finish
 					ctx.waitUntil(
 						api.sendMessage({
