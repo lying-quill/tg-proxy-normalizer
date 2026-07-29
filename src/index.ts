@@ -34,6 +34,7 @@ const api = new Proxy({} as APIMethods, {
 });
 
 export default {
+	// oxlint-disable-next-line max-lines-per-function
 	async fetch(req, _, ctx) {
 		const { pathname: path } = new URL(req.url);
 
@@ -41,8 +42,8 @@ export default {
 			const update = await req.json<TelegramUpdate>();
 
 			const message = update.message;
-			const text = message?.text;
-			const entities = message?.entities;
+			const text = message?.text ?? message?.caption;
+			const entities = message?.entities ?? message?.caption_entities;
 
 			console.debug("message=", message, entities);
 
@@ -50,12 +51,21 @@ export default {
 				const fixedLinks: string[] = [];
 
 				for (const et of entities) {
-					if (et.type !== "text_link") continue;
+					const url =
+						et.type === "text_link"
+							? et.url!
+							: et.type === "url"
+								? text.slice(et.offset, et.length)
+								: undefined;
+
+					if (!url) continue;
+
+					console.debug("url=", url);
 
 					try {
 						fixedLinks.push(
 							// this will throw errors on invalid links
-							fixLink(et.url!),
+							fixLink(url),
 						);
 					} catch {}
 				}
