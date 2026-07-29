@@ -1,0 +1,14 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "tg-proxy-normalizer",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-07-29",
+	"observability": {
+		"enabled": true,
+	},
+	"upload_source_maps": true,
+	"compatibility_flags": ["nodejs_compat"],
+	"secrets": {
+		"required": ["TG_BOT_TOKEN"],
+	},
+}
