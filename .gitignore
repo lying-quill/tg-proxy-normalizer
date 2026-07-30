@@ -150,6 +150,10 @@ dist
 
 .vscode-test
 
+# ignore everything in the vscode directory except the settings template
+.vscode/**/*
+!.vscode/settings.json.example
+
 # yarn v2
 
 .yarn/cache

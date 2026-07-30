@@ -4,12 +4,12 @@
 	"main": "src/index.ts",
 	"compatibility_date": "2026-07-29",
 	"observability": {
-		"enabled": true,
+		"enabled": true
 	},
 	"workers_dev": true,
 	"upload_source_maps": true,
 	"compatibility_flags": ["nodejs_compat"],
 	"secrets": {
-		"required": ["TG_BOT_TOKEN"],
-	},
+		"required": ["TG_BOT_TOKEN"]
+	}
 }

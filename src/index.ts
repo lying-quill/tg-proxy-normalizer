@@ -1,10 +1,10 @@
+import { env } from "cloudflare:workers";
 import type {
 	APIMethodParams,
 	APIMethods,
 	TelegramAPIResponse,
 	TelegramUpdate,
 } from "@gramio/types";
-import { env } from "cloudflare:workers";
 import { fixLink } from "./lib";
 
 const TOKEN = env.TG_BOT_TOKEN;
@@ -34,7 +34,6 @@ const api = new Proxy({} as APIMethods, {
 });
 
 export default {
-	// oxlint-disable-next-line max-lines-per-function
 	async fetch(req, _, ctx) {
 		const { pathname: path } = new URL(req.url);
 
@@ -53,7 +52,8 @@ export default {
 				for (const et of entities) {
 					const url =
 						et.type === "text_link"
-							? et.url!
+							? // biome-ignore lint/style/noNonNullAssertion: it's not null
+								et.url!
 							: et.type === "url"
 								? text.slice(et.offset, et.length)
 								: undefined;
