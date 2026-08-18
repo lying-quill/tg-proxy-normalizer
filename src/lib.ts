@@ -10,7 +10,6 @@
  * @throws {Error} If secret is too short
  */
 export function fixSecret(secret: string): string {
-	// oxlint-disable-next-line require-unicode-regexp
 	const isHex = /^[0-9a-fA-F]+$/.test(secret) && !(secret.length & 1);
 
 	const bytes = isHex
