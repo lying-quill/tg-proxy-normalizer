@@ -1,5 +1,5 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.5.6/schema.json",
+	"$schema": "node_modules/@biomejs/biome/configuration_schema.json",
 	"vcs": {
 		"enabled": true,
 		"clientKind": "git",
@@ -14,20 +14,19 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"suspicious": "off"
+			"preset": "recommended",
+			"complexity": {
+				"noBannedTypes": "off"
+			},
+			"suspicious": {
+				"noExplicitAny": "off"
+			}
 		}
 	},
 	"assist": {
 		"enabled": true,
 		"actions": {
-			"source": {
-				"organizeImports": "on",
-				"useSortedProperties": "on",
-				"useSortedAttributes": "on",
-				"useSortedInterfaceMembers": "off",
-				"noDuplicateClasses": "on",
-				"useSortedKeys": "off"
-			}
+			"preset": "recommended"
 		}
 	},
 	"files": {
